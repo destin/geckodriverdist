@@ -6,18 +6,19 @@ import os
 import tarfile
 
 
-def download_geckodriver(target_fname):
+def download_geckodriver():
+    target_fname = 'geckodriver.tar.gz'
     urllib.request.urlretrieve(
         'https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-arm7hf.tar.gz',
         target_fname)
+    return target_fname
 
 
 class PreInstallCommand(install):
     """Post-installation for installation mode."""
     def run(self):
         distutils.log.info('Running geckodriver download')
-        fname = 'geckodriver.tar.gz'
-        download_geckodriver(fname)
+        fname = download_geckodriver()
         distutils.log.info('Running geckodriver extraction')
         tar = tarfile.open(fname, "r:gz")
         tar.extractall()
