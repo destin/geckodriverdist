@@ -20,7 +20,7 @@ Install directly from github::
 
 Use specific geckodriver version::
 
-    pip install . --install-option="--geckodriver-version=0.17.0"
+    pip install geckodriverdist --install-option="--geckodriver-version=0.17.0"
 
 or in ``requirements.txt``::
 
