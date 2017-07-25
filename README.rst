@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/destin/geckodriverdist.svg?branch=master
+    :target: https://travis-ci.org/destin/geckodriverdist
+
 ========================
 geckodriver distribution
 ========================
