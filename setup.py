@@ -8,10 +8,12 @@ from setuptools import setup
 from setuptools.command.install import install
 
 
-def download_geckodriver():
+def download_geckodriver(version):
     target_fname = 'geckodriver.tar.gz'
+    download_url = 'https://github.com/mozilla/geckodriver/releases/download/v{version}/geckodriver-v{version}-linux64.tar.gz'.format(
+        version=version)
     urllib.request.urlretrieve(
-        'https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz',
+        download_url,
         target_fname)
     return target_fname
 
@@ -21,7 +23,7 @@ class PreInstallCommand(install):
 
     def run(self):
         distutils.log.info('running geckodriver download')
-        fname = download_geckodriver()
+        fname = download_geckodriver('0.18.0')
         distutils.log.info('running geckodriver extraction')
         tar = tarfile.open(fname, "r:gz")
         tar.extractall()
