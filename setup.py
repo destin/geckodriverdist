@@ -1,7 +1,6 @@
 import distutils.log
 import os
 import tarfile
-import urllib.request
 from distutils.command.install_scripts import install_scripts
 
 from setuptools import setup
@@ -9,6 +8,7 @@ from setuptools.command.install import install
 
 
 def download_geckodriver(version):
+    from six.moves import urllib
     target_fname = 'geckodriver.tar.gz'
     download_url = 'https://github.com/mozilla/geckodriver/releases/download/v{version}/geckodriver-v{version}-linux64.tar.gz'.format(
         version=version)
@@ -58,6 +58,7 @@ setup(
     author_email='pytel.dawid@gmail.com',
     license='MIT',
     packages=[],
+    setup_requires=['six'],
     zip_safe=False,
     cmdclass={
         'install': PreInstallCommand,
