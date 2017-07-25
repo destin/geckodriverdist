@@ -17,3 +17,11 @@ Install using pip::
 Install directly from github::
 
     pip install git+git://github.com/destin/geckodriverdist.git
+
+Use specific geckodriver version::
+
+    pip install . --install-option="--geckodriver-version=0.17.0"
+
+or in ``requirements.txt``::
+
+    geckodriverdist --install-option="--geckodriver-version=0.17.0"

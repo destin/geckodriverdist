@@ -7,6 +7,9 @@ from setuptools import setup
 from setuptools.command.install import install
 
 
+DEFAULT_GECKODRIVER_VERSION = '0.18.0'
+
+
 def download_geckodriver(version):
     from six.moves import urllib
     target_fname = 'geckodriver.tar.gz'
@@ -21,9 +24,18 @@ def download_geckodriver(version):
 class PreInstallCommand(install):
     """Post-installation for installation mode."""
 
+    user_options = install.user_options + [('geckodriver-version=',
+                                            None,
+                                            'Version of geckodriver [default: {}]'.format(DEFAULT_GECKODRIVER_VERSION))
+                                           ]
+
+    def initialize_options(self):
+        install.initialize_options(self)
+        self.geckodriver_version = DEFAULT_GECKODRIVER_VERSION
+
     def run(self):
         distutils.log.info('running geckodriver download')
-        fname = download_geckodriver('0.18.0')
+        fname = download_geckodriver(self.geckodriver_version)
         distutils.log.info('running geckodriver extraction')
         tar = tarfile.open(fname, "r:gz")
         tar.extractall()
