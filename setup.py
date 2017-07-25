@@ -26,7 +26,9 @@ class PreInstallCommand(install):
 
     user_options = install.user_options + [('geckodriver-version=',
                                             None,
-                                            'Version of geckodriver [default: {}]'.format(DEFAULT_GECKODRIVER_VERSION))
+                                            'Version of geckodriver [default: {version}]'.format(
+                                                version=DEFAULT_GECKODRIVER_VERSION)
+                                            )
                                            ]
 
     def initialize_options(self):
